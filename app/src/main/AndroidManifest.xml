@@ -8,9 +8,15 @@
         android:label="Обычная жизнь"
         android:roundIcon="@drawable/icon_edges"
         android:supportsRtl="true"
+        android:launchMode="singleTask"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize">
+        <activity android:name=".GameActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            />
+        <activity
+            android:name=".MainActivity" android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

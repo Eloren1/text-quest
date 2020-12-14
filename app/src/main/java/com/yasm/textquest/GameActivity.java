@@ -2,6 +2,7 @@ package com.yasm.textquest;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 import com.yasm.textquest.stages.Stage001;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends FragmentActivity {
 
     private Stage currentStage;
     private static final int bgCount = 6;
@@ -37,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_game);
-        FullscreenMode();
 
         mainText = findViewById(R.id.mainText);
         bt0 = findViewById(R.id.bt0);
@@ -107,6 +107,11 @@ public class GameActivity extends AppCompatActivity {
     public void GoNextStage(Stage nextStage) {
         currentStage = nextStage;
         hint.setAlpha(0);
+        // Скрытие кнопок вопроса
+        bt1.setAlpha(0);
+        bt2.setAlpha(0);
+        bt3.setAlpha(0);
+        bt0.setClickable(true);
 
         // Изменение фона
         for (int c = 0; c < bgCount; c++) {
@@ -114,9 +119,10 @@ public class GameActivity extends AppCompatActivity {
         }
         backgrounds[currentStage.BackgroundId].setImageAlpha(255);
 
+        // Печатание текста
         mainText.setText("");
         mainText.pause(100)
-                .type(currentStage.MainText).pause().run(new Runnable() {
+                .type(currentStage.MainText).run(new Runnable() {
             @Override
             public void run() {
                 mainText.setText(currentStage.MainText);
@@ -131,62 +137,17 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        // Включение и выключение кнопок
+        // Текст кнопкам вопроса
         if (currentStage.isQuestion) {
             bt1.setText(String.valueOf(currentStage.Bt1Text));
             bt2.setText(String.valueOf(currentStage.Bt2Text));
             bt3.setText(String.valueOf(currentStage.Bt3Text));
-        } else {
-            bt1.setAlpha(0);
-            bt2.setAlpha(0);
-            bt3.setAlpha(0);
-            bt0.setClickable(true);
         }
     }
 
     public void MainMenu() {
         Intent myIntent = new Intent(this, MainActivity.class);
         startActivity(myIntent);
+        finish();
     }
-
-    private final Handler mHideHandler = new Handler();
-    private View mControlsView;
-    private View mContentView;
-
-    private void FullscreenMode() {
-        mControlsView = findViewById(R.id.fullscreen_content);
-        mContentView = findViewById(R.id.fullscreen_content);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable);
-        mHideHandler.postDelayed(mHidePart2Runnable, 300);
-    }
-
-    private final Runnable mShowPart2Runnable = new Runnable() {
-        @Override
-        public void run() {
-            // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
-            mControlsView.setVisibility(View.VISIBLE);
-        }
-    };
-
-    private final Runnable mHidePart2Runnable = new Runnable() {
-        @SuppressLint("InlinedApi")
-        @Override
-        public void run() {
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
-    };
 }
