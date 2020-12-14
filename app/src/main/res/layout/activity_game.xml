@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/mainRel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    >
+
+    <ImageView
+        android:id="@+id/bg1"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/mainhome"
+        />
+    <ImageView
+        android:id="@+id/bg2"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/samsung"
+        />
+    <ImageView
+        android:id="@+id/bg3"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/cooler"
+        />
+    <ImageView
+        android:id="@+id/bg4"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/blackscreen"
+        />
+    <ImageView
+        android:id="@+id/bg5"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/window"
+        />
+    <ImageView
+        android:id="@+id/bg6"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/dota2"
+        />
+
+
+    <Button
+        android:id="@+id/bt0"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background = "@null"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/bgfade"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center"
+        android:alpha=".75"
+        android:src="@drawable/bgfadef"
+        />
+
+    <com.yasm.textquest.TypewriterView
+        android:id="@+id/mainText"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:clickable="false"
+        android:fontFamily="@font/merriweatherregular"
+        tools:text="«Какому ключевому слову соответствует уровень доступа, когда члены класса доступны внутри пакета и в наследниках?», — Что? Ненавижу это ООП." />
+
+    <RelativeLayout
+        android:id="@+id/fullscreen_content"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+          />
+
+            <Button
+                android:id="@+id/bt1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="answer 1"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:fontFamily="@font/merriweatherblack" />
+
+            <Button
+                android:id="@+id/bt2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="answer 2"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:fontFamily="@font/merriweatherblack" />
+
+            <Button
+                android:id="@+id/bt3"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="answer 3"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:fontFamily="@font/merriweatherblack" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:fontFamily="@font/merriweatherregular"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textColor="#CCCCCC"
+            android:textSize="20sp"
+            android:text="Нажми в любом месте для продолжения" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

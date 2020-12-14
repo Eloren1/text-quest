@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/mainRel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    >
+
+    <ImageView
+        android:id="@+id/bgmenu"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/mainhome"
+        />
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fontFamily="@font/merriweatherblack"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:text="Обычная жизнь" />
+
+    <!-- TODO: Навести порядок в XML -->
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/main"
+        android:gravity="top"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_play"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:textSize="18dp"
+                android:text="Играть"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:fontFamily="@font/merriweatherblack" />
+
+            <Button
+                android:id="@+id/bt_exit"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="ВЫход"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:fontFamily="@font/merriweatherblack" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
