@@ -6,7 +6,7 @@ public class Stage103 extends Stage {
     public Stage103() {
         super(false,
                 3,
-                "*Ты уснул за комьютером, решая задания*");
+                "*Ты уснул за комьютером, выполняя задания*");
     }
 
     @Override

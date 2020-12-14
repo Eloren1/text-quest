@@ -6,7 +6,7 @@ public class Stage007 extends Stage {
     public Stage007() {
         super(false,
                 4,
-                "Я снова за сегодня ничего не сделал.");
+                "Я снова сегодня ничего не сделал.");
     }
 
     @Override
