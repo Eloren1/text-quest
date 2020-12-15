@@ -60,26 +60,22 @@ public class GameActivity extends FragmentActivity {
 
         bt0.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                if (!mainText.isRunning)
-                    currentStage.ButtonClicked(0, v.getContext());
+                ButtonClicked(0, v);
             }
         });
         bt1.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                if (!mainText.isRunning)
-                    currentStage.ButtonClicked(1, v.getContext());
+                ButtonClicked(1, v);
             }
         });
         bt2.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                if (!mainText.isRunning)
-                    currentStage.ButtonClicked(2, v.getContext());
+                ButtonClicked(2, v);
             }
         });
         bt3.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                if (!mainText.isRunning)
-                    currentStage.ButtonClicked(3, v.getContext());
+                ButtonClicked(3, v);
             }
         });
 
@@ -89,18 +85,20 @@ public class GameActivity extends FragmentActivity {
     private void StartQuest() {
         questionStarted = true;
         // Инициализация первого Stage
-        ButtonClicked(-1);
+        ButtonClicked(-1, null);
     }
 
-    private void ButtonClicked(int btId) {
-        if (currentStage != null) {
-            if (currentStage.isQuestion) {
-                currentStage.ButtonClicked(btId, this.getApplicationContext());
+    private void ButtonClicked(int btId, View v) {
+        if (!mainText.isRunning) {
+            if (currentStage != null) {
+                if (currentStage.isQuestion) {
+                    currentStage.ButtonClicked(btId,  v.getContext());
+                } else {
+                    currentStage.ButtonClicked(0, v.getContext());
+                }
             } else {
-                currentStage.ButtonClicked(0, this.getApplicationContext());
+                GoNextStage(new Stage001());
             }
-        } else {
-            GoNextStage(new Stage001());
         }
     }
 
@@ -122,7 +120,7 @@ public class GameActivity extends FragmentActivity {
         // Печатание текста
         mainText.setText("");
         mainText.pause(100)
-                .type(currentStage.MainText).run(new Runnable() {
+                .type(currentStage.MainText).pause().run(new Runnable() {
             @Override
             public void run() {
                 mainText.setText(currentStage.MainText);

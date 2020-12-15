@@ -35,7 +35,10 @@ public class Stage {
     public void ButtonClicked(int btId, Context context) {
         GameActivity activity = (GameActivity) context;
         SetNext();
-        if (nextStage1 == null) { activity.MainMenu(); }
+        if (nextStage1 == null) {
+            activity.MainMenu();
+            return;
+        }
         if (isQuestion) {
             if (btId == 1) activity.GoNextStage(nextStage1);
             if (btId == 2) activity.GoNextStage(nextStage2);
