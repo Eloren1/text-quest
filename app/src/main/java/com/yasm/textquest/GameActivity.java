@@ -29,7 +29,6 @@ public class GameActivity extends FragmentActivity {
     private Button bt1; // кнопка выбора в вопросе
     private Button bt2; // кнопка выбора в вопросе
     private Button bt3; // кнопка выбора в вопросе
-    private TextView hint;
     private boolean questionStarted = false;
     private final Handler handler = new Handler(Looper.getMainLooper());
 
@@ -40,11 +39,15 @@ public class GameActivity extends FragmentActivity {
         setContentView(R.layout.activity_game);
 
         mainText = findViewById(R.id.mainText);
+        mainText.setFocusable(false);
+        mainText.setEnabled(false);
+        mainText.setCursorVisible(false);
+        mainText.setKeyListener(null);
+
         bt0 = findViewById(R.id.bt0);
         bt1 = findViewById(R.id.bt1);
         bt2 = findViewById(R.id.bt2);
         bt3 = findViewById(R.id.bt3);
-        hint = findViewById(R.id.hint);
 
         backgrounds[0] = findViewById(R.id.bg1);
         backgrounds[1] = findViewById(R.id.bg2);
@@ -56,7 +59,6 @@ public class GameActivity extends FragmentActivity {
         bt1.setAlpha(0);
         bt2.setAlpha(0);
         bt3.setAlpha(0);
-        hint.setAlpha(0);
 
         bt0.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -99,12 +101,20 @@ public class GameActivity extends FragmentActivity {
             } else {
                 GoNextStage(new Stage001());
             }
+        } else {
+            mainText.Skip(currentStage.MainText);
+
+            if (currentStage.isQuestion) {
+                bt1.setAlpha(1);
+                bt2.setAlpha(1);
+                bt3.setAlpha(1);
+                bt0.setClickable(false);
+            }
         }
     }
 
     public void GoNextStage(Stage nextStage) {
         currentStage = nextStage;
-        hint.setAlpha(0);
         // Скрытие кнопок вопроса
         bt1.setAlpha(0);
         bt2.setAlpha(0);
@@ -124,9 +134,7 @@ public class GameActivity extends FragmentActivity {
             @Override
             public void run() {
                 mainText.setText(currentStage.MainText);
-                if (!currentStage.isQuestion) {
-                    hint.setAlpha(1);
-                } else {
+                if (currentStage.isQuestion) {
                     bt1.setAlpha(1);
                     bt2.setAlpha(1);
                     bt3.setAlpha(1);

@@ -13,6 +13,8 @@ import java.util.Queue;
 /**
  * Created by claudijo on 18/11/15. Inspired by Devunwired @ Stackoverflow, see
  * http://stackoverflow.com/questions/6700374/android-character-by-character-display-text-animation
+ *
+ * Skip method by Eloren
  */
 public class TypewriterView extends EditText {
 
@@ -20,6 +22,8 @@ public class TypewriterView extends EditText {
     private long mTypeSpeed = 30;
     private long mDeleteSpeed = 20;
     private long mPauseDelay = 1000;
+
+    TextAdder textAdder;
 
     private Queue<Repeater> mRunnableQueue = new LinkedList<>();
 
@@ -39,8 +43,15 @@ public class TypewriterView extends EditText {
         setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     }
 
+    public void Skip(CharSequence text) {
+        mRunnableQueue.clear();
+        textAdder.mTextToAdd = "";
+        this.setText(text);
+    }
+
     public TypewriterView type(CharSequence text, long speed) {
-        mRunnableQueue.add(new TextAdder(text, speed, mRunNextRunnable));
+        textAdder = new TextAdder(text, speed, mRunNextRunnable);
+        mRunnableQueue.add(textAdder);
         if (!isRunning) runNext();
         return this;
     }
@@ -117,7 +128,7 @@ public class TypewriterView extends EditText {
 
     private class TextAdder extends Repeater {
 
-        private CharSequence mTextToAdd;
+        public CharSequence mTextToAdd;
 
         public TextAdder(CharSequence textToAdd, long speed, Runnable doneRunnable) {
             super(doneRunnable, speed);
